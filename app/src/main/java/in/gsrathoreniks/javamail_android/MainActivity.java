@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,10 +29,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    GMailSender sender = new GMailSender("YOUR_EMAIL@GMAIL.COM",
-                            "YOUR_PASSWORD");
+                    GMailSender sender = new GMailSender("niks.gajsa@gmail.com",
+                            "7891238567");
+                    Uri uri = Uri.fromFile(new File("//assets/text.txt"));
+                    String filepath = uri.getPath();
+                    Log.d(LOG_TAG,filepath);
                     sender.sendMail("EMAIL SUBJECT", "EMAIL BODY",
-                            "SENDER_EMAIL@GMAIL.COM", "RECIPIENTS_EMAIL@gmail.com");
+                            "niks.gajsa@gmail.com", "niks.gajsa@gmail.com");
                     Log.d(LOG_TAG,"Success");
                 } catch (Exception e) {
                     Log.e(LOG_TAG, e.getMessage(), e);
